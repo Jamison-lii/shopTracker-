@@ -1,6 +1,7 @@
 import Welcome from "@/components/welcome/Welcome";
 import Image from "next/image";
 import logo1 from "../../public/Design/logo1.png"
+import Login from "@/components/login/Login";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <hr className="border-gray-300 mt-1" />
 
       <Welcome />
+      <Login/>
     </div>
   );
 }
