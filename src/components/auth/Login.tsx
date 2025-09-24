@@ -24,13 +24,25 @@ const Login = () => {
     }
 
     // 💾 Save to localStorage if validation passes
-    const userData = { email, password };
-    localStorage.setItem("userData", JSON.stringify(userData));
+   const user = localStorage.getItem("userData");
+   if (user) {
+     const userData = JSON.parse(user);
 
-    alert("✅ Data saved to local storage!");
+      if (userData.email !== email || userData.password !== password) {
+
+        alert("❌ Invalid email or password.");
+        return;
+      }else{
+
+    alert("Login Successfull");
     router.push("/dashboard");
+
+      }
+
+   }
   };
 
+  
 
 
   return (
@@ -59,7 +71,6 @@ const Login = () => {
           Login
         </button>
 
-        <div className="text-sm text-center text-[#45A185] mt-7">Forgot password ?</div>
       </div>
     </div>
   );
