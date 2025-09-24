@@ -1,20 +1,68 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import InputField from "../inputField/InputField";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
-  return(
-   <div className="flex justify-center items-center mt-16">
-     <div className="flex flex-col w-xl">
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+
+    const handleSave = () => {
+    // 🔎 Basic validation checks
+    if (!email || !password) {
+      alert("⚠️ Please fill in both email and password.");
+      return;
+    }
+
+    // 📧 Email format validation (simple regex)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("❌ Please enter a valid email address.");
+      return;
+    }
+
+    // 💾 Save to localStorage if validation passes
+    const userData = { email, password };
+    localStorage.setItem("userData", JSON.stringify(userData));
+
+    alert("✅ Data saved to local storage!");
+    router.push("/dashboard");
+  };
+
+
+
+  return (
+    <div className="flex justify-center items-center mt-10">
+      <div className="flex flex-col w-xl">
         <div className="flex flex-col">
-            <div className="text-sm font-semibold ml-1">Email or Username</div>
-            <input
-              type="text"
-              className="border h-12  border-[#CCEBE0] rounded-md p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#45A185]"
-              placeholder="Enter your email or username"
-            />
+          <InputField
+            label="Email or Username"
+            placeholder="Enter your email or username"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-     </div>
-  </div>
-  )
+
+        <div className="flex pt-4 flex-col">
+          <InputField
+            label="Password"
+            placeholder="Enter your password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+
+        <button onClick={handleSave} className="bg-[#007A54] text-white h-12 rounded-md mt-6 font-semibold hover:bg-[#3b8e76] transition duration-300">
+          Login
+        </button>
+
+        <div className="text-sm text-center text-[#45A185] mt-7">Forgot password ?</div>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
