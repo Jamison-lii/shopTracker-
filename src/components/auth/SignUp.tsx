@@ -9,11 +9,12 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [image, setImage] = useState<string | null>(null); // Base64 image
   const router = useRouter();
 
   const handleSignup = () => {
     // Basic validation
-    if (!fullName || !email || !password || !confirmPassword) {
+    if (!fullName || !email || !storeName || !password || !confirmPassword) {
       alert("⚠️ Please fill in all fields.");
       return;
     }
@@ -31,13 +32,27 @@ const Signup = () => {
       return;
     }
 
-    // Save to localStorage
-    const userData = { fullName, email, password };
+    // Save to localStorage (for now)
+    const userData = { fullName, storeName, email, password, image };
     localStorage.setItem("userData", JSON.stringify(userData));
 
     alert("✅ Account created successfully!");
     router.push("/dashboard");
   };
+
+  // Convert image to Base64 before saving
+  // Handle image selection
+const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files?.[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImage(reader.result as string); // store base64 string
+    };
+    reader.readAsDataURL(file); // convert file to base64
+  }
+};
+
 
   return (
     <div className="flex justify-center items-center mt-10">
@@ -49,7 +64,8 @@ const Signup = () => {
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
         />
-       {/* Store Name */}
+
+        {/* Store Name */}
         <InputField
           label="Store Name"
           placeholder="Enter your Store name"
@@ -89,6 +105,24 @@ const Signup = () => {
           />
         </div>
 
+        {/* Upload Image */}
+        <div className="flex pt-4 flex-col">
+          <label className="font-semibold mb-2">Upload Profile Image</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="border rounded-md p-2"
+          />
+          {image && (
+            <img
+              src={image}
+              alt="Preview"
+              className="mt-4 w-32 h-32 object-cover rounded-md border"
+            />
+          )}
+        </div>
+
         {/* Sign Up Button */}
         <button
           onClick={handleSignup}
@@ -96,9 +130,6 @@ const Signup = () => {
         >
           Sign Up
         </button>
-
-        {/* Redirect to Login */}
-     
       </div>
     </div>
   );
