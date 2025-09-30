@@ -13,7 +13,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <div className="dashboard-layout flex flex-col min-h-screen">
       <Header />
-      <main className="">{children}</main>
+      <main className="flex justify-center items-center mt-12">{children}</main>
       <Footer />
     </div>
   );
