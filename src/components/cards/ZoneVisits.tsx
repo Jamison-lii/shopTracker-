@@ -24,17 +24,17 @@ export default function ZoneVisits() {
   const displayedZones = expanded ? sampleZones : sampleZones.slice(0, 4);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 mt-9">
       <h2 className="text-xl font-semibold text-gray-800">
         Most Visited Areas Today
       </h2>
 
       {/* Grid with 2 cards per row on medium+ screens */}
-      <div className="grid grid-cols-1 md:grid-cols-2 space-y-4 md:space-y-1 md:gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 space-y-4 md:space-y-1 md:gap-4 ">
         {displayedZones.map((zone) => (
           <div
             key={zone.id}
-            className="rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition p-4"
+            className="rounded-md border border-gray-200 shadow-sm hover:shadow-lg transition p-4"
           >
             <h3 className="text-lg font-medium text-gray-900">{zone.name}</h3>
             <p className="text-gray-500 text-sm mt-1">Visits today</p>

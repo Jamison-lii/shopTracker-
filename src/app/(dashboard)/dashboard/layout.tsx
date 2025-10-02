@@ -11,9 +11,9 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
-    <div className="dashboard-layout flex flex-col min-h-screen">
+    <div className="dashboard-layout  flex flex-col min-h-screen">
       <Header />
-      <main className="flex justify-center items-center mt-12">{children}</main>
+      <main className="flex justify-center p-10 items-center mt-12 mb-10">{children}</main>
       <Footer />
     </div>
   );

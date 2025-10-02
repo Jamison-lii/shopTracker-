@@ -14,10 +14,10 @@ const OverviewCard: React.FC<OverViewCardProps> = ({
   percent,
 }) => {
   return (
-    <div className="h-40 flex flex-col space-y-2 p-5 mt-3 w-54 rounded-md bg-[#F0F5F2] ">
-      <div className="text-[13px] font-semibold ">{label}</div>
-      <div className="text-xl font-bold">{value} </div>
-      <div className="text-[12px] font-semibold text-[#007A54]">
+    <div className="h-44 flex flex-col space-y-2 p-5 mt-3  rounded-md bg-[#F0F5F2] ">
+      <div className="text-xl text-[#3f3f3f] font-semibold ">{label}</div>
+      <div className="text-lg font-bold">{value} </div>
+      <div className="text-xl font-semibold text-[#007A54]">
         {Number(percent) > 0 ? (
           <div className=" text-[#007A54]">+{percent}% increase</div>
         ) : (

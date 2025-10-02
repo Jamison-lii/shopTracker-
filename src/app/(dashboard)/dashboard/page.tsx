@@ -2,6 +2,8 @@ import React from 'react'
 
 import OverviewCard from '@/components/cards/OverviewCard'
 import ZoneVisits from '@/components/cards/ZoneVisits'
+import PromotionsList from '@/components/cards/PromotionsList'
+import QuickStatsCard from '@/components/cards/QuickStatsCard'
 
 const page = () => {
   return (
@@ -9,10 +11,12 @@ const page = () => {
       <div>
         Dashboard
       </div>
-      <div className='text-lg pt-7 font-semibold mt-2'>
+      <div className='text-xl pt-7 font-semibold mt-2'>
       Overview
       </div>
-      <div className='flex space-x-10  '>
+      
+      <div className='   '>
+        <div className='grid  md:grid-cols-4 gap-4'>
        <OverviewCard
        label = "Daily Footfall"
        value = '1,340'
@@ -39,10 +43,13 @@ const page = () => {
 
        />
        </div>
-       <div className='text-lg pt-7 font-semibold mt-2'>
-        Top  Store Zones 
-      </div>
+       </div>
+       
       <ZoneVisits/>
+
+      <PromotionsList/>
+
+      <QuickStatsCard/>
      </div>
   )
 }
